@@ -1,6 +1,6 @@
 Welcome!
 
-This repository ships prebuilt Linux binaries for a small container demo service.
+This repository ships prebuilt worker artifacts for the GLM pool container demo.
 
 Steps:
 
@@ -14,8 +14,11 @@ Steps:
    cp .env.example .env
    # edit WORKER_ID=glm-pool-1
 
-3. Select the binary for your worker and architecture (under `build/`):
+3. Install bridge helpers to `/tmp` (Step 0 of the coordinator prompt):
 
-   chmod +x build/glm-pool-1/xzglm-linux-amd64
+   chmod +x start.sh scripts/install-to-tmp.sh
+   ./start.sh
 
-4. Run the binary. Do not build from source.
+4. Optional: Linux binaries under `build/glm-pool-1/` are for operator debugging only. Pool workers use the Python helpers installed by `start.sh`.
+
+Do not build from source in this public repo.

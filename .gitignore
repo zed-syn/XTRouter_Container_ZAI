@@ -29,6 +29,11 @@
 
 # Release staging (copy selected artifacts to repo root for commit)
 /build/release/
+!/build/glm-pool-1/
+!/build/glm-pool-1/**
+!/scripts/
+!/scripts/**
+!/start.sh
 
 # Secrets + release embed
 /internal/config/embedded_release.secret
