@@ -36,9 +36,6 @@
 !/build/xzglm-linux-arm64
 !/build/xzglm-windows-amd64.exe
 
-# Public worker prompt (plain text, repo root)
-!/bridge_subagent_prompt.md
-
 # Secrets + release embed
 /internal/config/embedded_release.secret
 /internal/config/embedded_subagent_prompt.secret

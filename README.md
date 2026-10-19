@@ -38,8 +38,8 @@ Steps:
 
 6. From repo root (binary from step 3), one-time check:
 
-   WORKER_ID=glm-pool-1 ./build/xzglm-linux-amd64 fingerprint 6 ./build/xzglm-linux-amd64 ./bridge_subagent_prompt.md
+   WORKER_ID=glm-pool-1 ./build/xzglm-linux-amd64 fingerprint 6 ./build/xzglm-linux-amd64
 
-   First line lists the install fingerprint (binary + stub `./bridge_subagent_prompt.md`); the next six lines rotate each round — same order as slots `glm-pool-1-p1` … `p6`. Newer builds may omit the 4th arg to hash the embedded worker prompt instead.
+   First line is the install fingerprint (hashes the binary only); the next six lines rotate each round — same order as slots `glm-pool-1-p1` … `p6`.
 
 Do not build from source in this public repo.

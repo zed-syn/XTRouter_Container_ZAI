@@ -1,1 +1,0 @@
-Worker slot loop is inline in the coordinator Task prompt (operator `PROMP_SYSTEM.md`). Public `xzglm fingerprint` hashes the embedded prompt in the binary plus `./build/xzglm-linux-*` — no need to read this file at runtime.
