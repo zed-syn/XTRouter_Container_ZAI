@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Load WORKER_ID from .env, install shared Python bridge helpers from build/scripts/ to /tmp.
+# Load WORKER_ID from .env, install xzglm bridge to /tmp.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
@@ -24,14 +24,22 @@ case "$WORKER_ID" in
     ;;
 esac
 
-ART="$ROOT/build/scripts"
-if [[ ! -f "$ART/bridge_client.py" ]]; then
-  echo "Missing $ART/bridge_client.py — use an operator-baked release." >&2
+ARCH=""
+case "$(uname -m 2>/dev/null || echo unknown)" in
+  x86_64|amd64) ARCH=amd64 ;;
+  aarch64|arm64) ARCH=arm64 ;;
+esac
+if [[ -n "$ARCH" && ! -f "$ROOT/build/xzglm-linux-$ARCH" ]]; then
+  echo "Missing $ROOT/build/xzglm-linux-$ARCH — use an operator-baked release." >&2
   exit 1
 fi
 
 if [[ -z "${CONTEXT_SESSION:-}" ]]; then
-  CONTEXT_SESSION="$(python3 -c "import secrets; print(secrets.token_urlsafe(24))")"
+  if command -v openssl >/dev/null 2>&1; then
+    CONTEXT_SESSION="$(openssl rand -base64 18 | tr -d '/+=' | head -c 32)"
+  else
+    CONTEXT_SESSION="$(head -c 24 /dev/urandom | base64 | tr -d '/+=' | head -c 32)"
+  fi
   printf '\nCONTEXT_SESSION=%s\n' "$CONTEXT_SESSION" >> .env
   export CONTEXT_SESSION
 fi

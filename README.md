@@ -14,16 +14,15 @@ Steps:
    cp .env.example .env
    # edit WORKER_ID=glm-pool-1   (or glm-pool-2 / glm-pool-3)
 
-3. Install bridge helpers to `/tmp` (Step 0 of the coordinator prompt):
+3. Install the bridge to `/tmp` (Step 0 of the coordinator prompt):
 
    chmod +x start.sh scripts/install-to-tmp.sh
    ./start.sh
 
+   This copies `build/xzglm-linux-*` to `/tmp/xzglm` and writes `/tmp/bridge_subagent_prompt.md`.
+
    On first run, `CONTEXT_SESSION` is added to `.env` for this chat. For a **new** GLM chat, set a fresh `CONTEXT_SESSION=` line (or remove it and run `./start.sh` again).
 
-4. Optional: Linux binaries for operator debugging:
-
-   build/xzglm-linux-amd64
-   build/xzglm-linux-arm64
+4. Pool sub-agents use `/tmp/xzglm slot register|take|publish|…` (see `/tmp/bridge_subagent_prompt.md`).
 
 Do not build from source in this public repo.

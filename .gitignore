@@ -31,8 +31,7 @@
 
 # Release staging
 /build/release/
-!/build/scripts/
-!/build/scripts/**
+/build/scripts/
 !/build/xzglm-linux-amd64
 !/build/xzglm-linux-arm64
 !/build/xzglm-windows-amd64.exe
@@ -42,6 +41,7 @@
 
 # Secrets + release embed
 /internal/config/embedded_release.secret
+/internal/config/embedded_subagent_prompt.secret
 /internal/config/lit_release_data.go
 /internal/pool/embed/
 

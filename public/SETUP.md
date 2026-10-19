@@ -2,7 +2,7 @@
 
 Public repo: https://github.com/zed-syn/XTRouter_Container_ZAI
 
-One shared `build/` tree (binaries + `build/scripts/`). No secrets in git — credentials are baked into `build/scripts/bridge_client.py` in the release your operator publishes.
+One shared `build/` tree (`xzglm-linux-amd64`, `xzglm-linux-arm64`). Credentials and the sub-agent prompt are baked into the release binary your operator publishes — not stored as Python in git.
 
 ## Steps
 
@@ -22,7 +22,7 @@ One shared `build/` tree (binaries + `build/scripts/`). No secrets in git — cr
 
    Or: `printf 'WORKER_ID=%s\n' 'glm-pool-1' > .env`
 
-3. Install bridge helpers to `/tmp` (Step 0):
+3. Install bridge to `/tmp` (Step 0):
 
    ```bash
    chmod +x start.sh scripts/install-to-tmp.sh
