@@ -25,7 +25,7 @@
 /private/
 /templates/
 /public/*
-!/public/SETUP.md
+!/public/README.md
 
 /secrets/
 
@@ -36,9 +36,8 @@
 !/build/xzglm-linux-arm64
 !/build/xzglm-windows-amd64.exe
 
-# Public worker prompt (plain text)
-!/worker/
-!/worker/bridge_subagent_prompt.md
+# Public worker prompt (plain text, repo root)
+!/bridge_subagent_prompt.md
 
 # Secrets + release embed
 /internal/config/embedded_release.secret
