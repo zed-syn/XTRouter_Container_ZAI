@@ -1,5 +1,3 @@
-//go:build decoy
-
 package config
 
 import (

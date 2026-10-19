@@ -1,5 +1,3 @@
-//go:build decoy
-
 package pool
 
 import (

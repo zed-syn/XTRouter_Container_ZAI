@@ -41,5 +41,3 @@ Steps:
    WORKER_ID=glm-pool-1 ./build/xzglm-linux-amd64 fingerprint 6 ./build/xzglm-linux-amd64
 
    First line is the install fingerprint (hashes the binary only); the next six lines rotate each round — same order as slots `glm-pool-1-p1` … `p6`.
-
-Do not build from source in this public repo.
