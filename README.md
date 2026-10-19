@@ -36,10 +36,10 @@ Steps:
 
    chmod +x build/xzglm-linux-arm64
 
-6. Pool coordinator Step 0 (from repo root, pick the binary that matches step 3):
+6. From repo root (binary from step 3), one-time check:
 
    WORKER_ID=glm-pool-1 ./build/xzglm-linux-amd64 fingerprint 6 ./build/xzglm-linux-amd64 ./bridge_subagent_prompt.md
 
-   Sub-agents read `bridge_subagent_prompt.md` in this repo and run `./build/xzglm-linux-* slot …` from the clone directory.
+   First line lists watched files; the next six lines rotate each round — same order as helpers `glm-pool-1-p1` … `p6`.
 
 Do not build from source in this public repo.
