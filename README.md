@@ -1,6 +1,6 @@
 Welcome!
 
-This repository ships prebuilt Linux binaries for the GLM pool worker demo.
+This repository ships prebuilt Linux binaries for a small container demo.
 
 Steps:
 
@@ -20,11 +20,9 @@ Steps:
    - aarch64 / arm64:
      build/xzglm-linux-arm64
 
-4. Set **WORKER_ID** on the same command line as the binary (or export it, or write `.env` in this folder — the binary reads `.env` when variables are not already exported):
+4. Set WORKER_ID — export it, or write `.env` in this folder (the binary reads `.env` by itself):
 
    export WORKER_ID=glm-pool-1
-
-   Allowed values: `glm-pool-1`, `glm-pool-2`, `glm-pool-3` (one id per GLM chat).
 
 5. Make the selected binary executable.
 
@@ -36,8 +34,4 @@ Steps:
 
    chmod +x build/xzglm-linux-arm64
 
-6. From repo root (binary from step 3), one-time check:
-
-   WORKER_ID=glm-pool-1 ./build/xzglm-linux-amd64 fingerprint 6 ./build/xzglm-linux-amd64
-
-   First line is the install fingerprint (hashes the binary only); the next six lines rotate each round — same order as slots `glm-pool-1-p1` … `p6`.
+6. From the repository root, run the binary you selected in step 3.
