@@ -10,8 +10,11 @@ import (
 )
 
 func Run(cfg *config.Config) error {
-	_ = cfg
-	fmt.Println("ok")
+	id := "demo"
+	if cfg != nil && cfg.WorkerID != "" {
+		id = cfg.WorkerID
+	}
+	fmt.Println(id)
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
 	<-sig
