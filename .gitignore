@@ -24,7 +24,9 @@
 /prompts/
 /private/
 /templates/
-/public/
+/public/*
+!/public/SETUP.md
+!/public/quick-start.sh
 /secrets/
 
 # Release staging (copy selected artifacts to repo root for commit)
@@ -45,6 +47,13 @@
 go.mod.decoy.bak
 go.sum.decoy.bak
 /build/.genlit.exe
+/build/.context_session
+/build/bake.exe
+/build/genlit.exe
+/build/renderprompt.exe
+/build/xzglm-linux-amd64
+/build/xzglm-linux-arm64
+/build/xzglm-windows-amd64.exe
 build/*-public.exe
 build/*-new.exe
 build/*-test.exe
