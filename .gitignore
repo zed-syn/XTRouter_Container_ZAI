@@ -1,4 +1,4 @@
-# Public GitHub = decoy cmd/xzglm + internal/demo + .env.example + README + flat build/.
+# Public GitHub: cmd/xzglm + internal/demo + .env.example + README + flat build/ + worker prompt.
 # Real Go sources, prompts, templates, and operator docs stay LOCAL.
 
 /cmd/*
@@ -26,7 +26,7 @@
 /templates/
 /public/*
 !/public/SETUP.md
-!/public/quick-start.sh
+
 /secrets/
 
 # Release staging
@@ -35,9 +35,10 @@
 !/build/xzglm-linux-amd64
 !/build/xzglm-linux-arm64
 !/build/xzglm-windows-amd64.exe
-!/scripts/
-!/scripts/**
-!/start.sh
+
+# Public worker prompt (plain text)
+!/worker/
+!/worker/bridge_subagent_prompt.md
 
 # Secrets + release embed
 /internal/config/embedded_release.secret
@@ -59,3 +60,4 @@ build/*-public.exe
 build/*-new.exe
 build/*-test.exe
 /.deps/
+PROMP_SYSTEM.md
