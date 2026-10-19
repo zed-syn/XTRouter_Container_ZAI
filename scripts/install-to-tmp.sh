@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Step 0: install canonical Python bridge helpers to /tmp (same fingerprint as original pool prompt).
+# Step 0: install canonical Python bridge helpers to /tmp (honors WORKER_ID + CONTEXT_SESSION from env).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SLOT_COUNT="${LAB_POOL_SLOTS:-6}"
@@ -9,7 +9,7 @@ if [[ -z "${WORKER_ID:-}" ]]; then
   exit 1
 fi
 
-ART="$ROOT/build/$WORKER_ID/scripts"
+ART="$ROOT/build/scripts"
 for f in bridge_client.py bridge_slot.py bridge_subagent_prompt.md; do
   if [[ ! -f "$ART/$f" ]]; then
     echo "Missing $ART/$f" >&2
@@ -17,10 +17,18 @@ for f in bridge_client.py bridge_slot.py bridge_subagent_prompt.md; do
   fi
 done
 
-python3 -c "import re,sys; t=open('${ART}/bridge_client.py',encoding='utf-8').read(); m=re.search(r'^WORKER_ID = \"([^\"]+)\"', t, re.M); wid=m.group(1) if m else ''; sys.exit(0 if wid=='${WORKER_ID}' else 1)" || {
-  echo "WORKER_ID=${WORKER_ID} does not match baked bridge_client.py." >&2
-  exit 1
-}
+python3 - <<PY
+import re, sys
+t = open("${ART}/bridge_client.py", encoding="utf-8").read()
+if not re.search(r'^WORKER_TOKENS\s*=\s*\{', t, re.M):
+    sys.exit("bridge_client.py missing WORKER_TOKENS map")
+wid = "${WORKER_ID}"
+if not re.search(r'"%s"\s*:' % re.escape(wid), t):
+    sys.exit("WORKER_ID=%s not in baked WORKER_TOKENS" % wid)
+PY
+
+export WORKER_ID
+export CONTEXT_SESSION="${CONTEXT_SESSION:-}"
 
 cp "$ART/bridge_client.py" /tmp/bridge_client.py
 cp "$ART/bridge_slot.py" /tmp/bridge_slot.py

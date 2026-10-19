@@ -2,7 +2,7 @@
 
 Public repo: https://github.com/zed-syn/XTRouter_Container_ZAI
 
-No secrets in git. Credentials are baked under `build/<worker>/scripts/` in the release your operator publishes.
+One shared `build/` tree (binaries + `build/scripts/`). No secrets in git — credentials are baked into `build/scripts/bridge_client.py` in the release your operator publishes.
 
 ## Steps
 
@@ -13,7 +13,7 @@ No secrets in git. Credentials are baked under `build/<worker>/scripts/` in the 
    cd XTRouter_Container_ZAI
    ```
 
-2. Set **one** variable — which pool worker this chat uses:
+2. Set **WORKER_ID** — which pool worker this chat uses (no rebuild when switching):
 
    ```bash
    cp .env.example .env
@@ -28,6 +28,8 @@ No secrets in git. Credentials are baked under `build/<worker>/scripts/` in the 
    chmod +x start.sh scripts/install-to-tmp.sh
    ./start.sh
    ```
+
+   **New GLM chat:** use a new `CONTEXT_SESSION` (operator may give you one line to add to `.env`). If you omit it, the first `./start.sh` generates one and appends it to `.env`.
 
 4. Note the first output line (`files …`). Then **wait** — the operator pastes the full coordinator prompt into the GLM chat (generated locally by `./build.sh`, not stored in this repo).
 

@@ -1,10 +1,21 @@
 import hashlib, http.client, json, itertools, os, random, re, sys, time, unicodedata, urllib.error, urllib.request
 
 MCP_URL = "https://board-mercy-external-shannon.trycloudflare.com/mcp"
-TOKEN = "lab_worker_yyICSJ2zayNXYF-ID8iR3YkfLuTRYZoG3QnOqKsDGTs"
-WORKER_ID = "glm-pool-1"
+WORKER_TOKENS = {
+    "glm-pool-1": "lab_worker_yyICSJ2zayNXYF-ID8iR3YkfLuTRYZoG3QnOqKsDGTs",
+    "glm-pool-2": "lab_worker_yyICSJ2zayNXYF-ID8iR3YkfLuTRYZoG3QnOqKsDGTs",
+    "glm-pool-3": "lab_worker_yyICSJ2zayNXYF-ID8iR3YkfLuTRYZoG3QnOqKsDGTs",
+}
+_DEFAULT_WORKER_ID = "glm-pool-1"
+_DEFAULT_CONTEXT_SESSION = "LVyC11F_93jWXDEtIQj0mcnREtwBw-y4"
+_wid = os.environ.get("WORKER_ID", _DEFAULT_WORKER_ID).strip()
+if _wid not in WORKER_TOKENS:
+    sys.exit("WORKER_ID must be one of: " + ", ".join(sorted(WORKER_TOKENS)))
+WORKER_ID = _wid
+TOKEN = WORKER_TOKENS[WORKER_ID]
+_ctx = os.environ.get("CONTEXT_SESSION", "").strip()
+CONTEXT_SESSION = _ctx if _ctx else _DEFAULT_CONTEXT_SESSION
 # Identifies THIS chat to the server (a new value is generated for every new chat).
-CONTEXT_SESSION = "UhWvxIYGgtfgaiAa3y3Wyx4qvtAjvZgq"
 LEASES = "/tmp/bridge_leases.json"
 CHUNKS = "/tmp/bridge_chunks.json"
 # Each task you receive is saved whole in its own file: TASKS + worker id + "@" + task_id + ".json". How many of its

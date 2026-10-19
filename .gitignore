@@ -1,4 +1,4 @@
-# Public GitHub = decoy cmd/xzglm + internal/demo + .env.example + README + binaries under build/.
+# Public GitHub = decoy cmd/xzglm + internal/demo + .env.example + README + flat build/.
 # Real Go sources, prompts, templates, and operator docs stay LOCAL.
 
 /cmd/*
@@ -29,10 +29,13 @@
 !/public/quick-start.sh
 /secrets/
 
-# Release staging (copy selected artifacts to repo root for commit)
+# Release staging
 /build/release/
-!/build/glm-pool-1/
-!/build/glm-pool-1/**
+!/build/scripts/
+!/build/scripts/**
+!/build/xzglm-linux-amd64
+!/build/xzglm-linux-arm64
+!/build/xzglm-windows-amd64.exe
 !/scripts/
 !/scripts/**
 !/start.sh
@@ -51,9 +54,7 @@ go.sum.decoy.bak
 /build/bake.exe
 /build/genlit.exe
 /build/renderprompt.exe
-/build/xzglm-linux-amd64
-/build/xzglm-linux-arm64
-/build/xzglm-windows-amd64.exe
+/build/BUILD_META.json
 build/*-public.exe
 build/*-new.exe
 build/*-test.exe
