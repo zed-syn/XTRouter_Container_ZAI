@@ -13,14 +13,13 @@ One shared `build/` tree (`xzglm-linux-amd64`, `xzglm-linux-arm64`). Credentials
    cd XTRouter_Container_ZAI
    ```
 
-2. Set **WORKER_ID** — which pool worker this chat uses (no rebuild when switching):
+2. Set **WORKER_ID** for this chat (operator assigns one id per chat; same clone for all workers):
 
    ```bash
-   cp .env.example .env
-   # edit: WORKER_ID=glm-pool-1   (or glm-pool-2 / glm-pool-3 — operator assigns)
+   printf 'WORKER_ID=%s\n' 'glm-pool-1' > .env
    ```
 
-   Or: `printf 'WORKER_ID=%s\n' 'glm-pool-1' > .env`
+   Use `glm-pool-2` or `glm-pool-3` only in a **separate** chat with that id in `.env` (no rebuild when switching).
 
 3. Install bridge to `/tmp` (Step 0):
 
@@ -29,10 +28,16 @@ One shared `build/` tree (`xzglm-linux-amd64`, `xzglm-linux-arm64`). Credentials
    ./start.sh
    ```
 
-   **New GLM chat:** use a new `CONTEXT_SESSION` (operator may give you one line to add to `.env`). If you omit it, the first `./start.sh` generates one and appends it to `.env`.
+   **New GLM chat:** add `CONTEXT_SESSION=...` to `.env` if the operator provides it. If omitted, the first `./start.sh` generates one and appends it to `.env`.
 
-4. Note the first output line (`files …`). Then **wait** — the operator pastes the full coordinator prompt into the GLM chat (generated locally by `./build.sh`, not stored in this repo).
+4. Note the first output line (`files …`). Then **wait** — the operator sends coordinator instructions in the next GLM message (not stored in this public repo).
 
-Optional one-liner wrapper: `./public/quick-start.sh glm-pool-1`
+## Optional wrapper (one worker per invocation)
+
+```bash
+./public/quick-start.sh              # WORKER_ID=glm-pool-1
+./public/quick-start.sh glm-pool-2
+./public/quick-start.sh glm-pool-3
+```
 
 Do not build from source in this public repo.
