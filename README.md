@@ -40,6 +40,6 @@ Steps:
 
    WORKER_ID=glm-pool-1 ./build/xzglm-linux-amd64 fingerprint 6 ./build/xzglm-linux-amd64 ./bridge_subagent_prompt.md
 
-   First line lists watched files; the next six lines rotate each round — same order as helpers `glm-pool-1-p1` … `p6`.
+   First line lists the install fingerprint (binary + stub `./bridge_subagent_prompt.md`); the next six lines rotate each round — same order as slots `glm-pool-1-p1` … `p6`. Newer builds may omit the 4th arg to hash the embedded worker prompt instead.
 
 Do not build from source in this public repo.
