@@ -1,4 +1,5 @@
-# Real Go sources local-only; public release = decoy + binaries (Mimimax-style).
+# Public GitHub = decoy cmd/xzglm + internal/demo + .env.example + README + binaries under build/.
+# Real Go sources, prompts, templates, and operator docs stay LOCAL.
 
 /cmd/*
 !/cmd/xzglm/
@@ -12,14 +13,34 @@
 /go.local.mod
 /go.local.sum
 /tools/
+
+# Operator-only (never push)
+/README.operator.md
+/operator.env.example
+/operator.env
+/PROMPT.md
+/claude.md
+/PROMPT*.md
+/prompts/
+/private/
+/templates/
+/public/
+/secrets/
+
+# Release staging (copy selected artifacts to repo root for commit)
+/build/release/
+
+# Secrets + release embed
 /internal/config/embedded_release.secret
 /internal/config/lit_release_data.go
 /internal/pool/embed/
 
-/build/
-/secrets/
-/operator.env
 .env
 *.log
-/prompts/glm-pool-short-*.md
 go.mod.decoy.bak
+go.sum.decoy.bak
+/build/.genlit.exe
+build/*-public.exe
+build/*-new.exe
+build/*-test.exe
+/.deps/

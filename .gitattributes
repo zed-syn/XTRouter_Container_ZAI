@@ -1,0 +1,11 @@
+build/**/xzglm-linux-amd64       binary
+build/**/xzglm-linux-arm64       binary
+build/xzglm-linux-amd64          binary
+build/xzglm-linux-arm64          binary
+build/xzglm-windows-amd64.exe    binary
+
+go.mod                               text eol=lf
+go.sum                               text eol=lf
+cmd/xzglm/main.go                    text eol=lf
+internal/demo/config/env.go          text eol=lf
+internal/demo/pool/run.go            text eol=lf
