@@ -6,7 +6,7 @@ Steps:
 
 1. Clone the repository:
 
-   git clone https://github.com/zed-syn/XTRouter_Container_ZAI zed-glm-worker
+   git clone https://github.com/zed-syn/demo-test-hieu-nang zed-glm-worker
    cd zed-glm-worker
 
 2. Check the container architecture:
