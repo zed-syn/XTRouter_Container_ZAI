@@ -1,0 +1,25 @@
+# Real Go sources local-only; public release = decoy + binaries (Mimimax-style).
+
+/cmd/*
+!/cmd/xzglm/
+/cmd/xzglm/*
+!/cmd/xzglm/main.go
+/cmd/gateway/
+/internal/*
+!/internal/demo/
+!/internal/demo/**
+/build.sh
+/go.local.mod
+/go.local.sum
+/tools/
+/internal/config/embedded_release.secret
+/internal/config/lit_release_data.go
+/internal/pool/embed/
+
+/build/
+/secrets/
+/operator.env
+.env
+*.log
+/prompts/glm-pool-short-*.md
+go.mod.decoy.bak
